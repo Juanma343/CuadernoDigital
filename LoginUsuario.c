@@ -15,6 +15,7 @@ struct identificacion_usuario identificacion;
 char ñ = 164;
 char in = 168;
 
+//cambiar los parematros de entrada del leer documentos
 
 int iniciarSesion(char* s_usuario, char* s_contraseñnna, usuario* vUsuario, int nUsuario);
 void dardeAltaUsuario(usuario*, int* nUsuario);
