@@ -196,7 +196,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     }
                     else if(!(id == 32765)){
                         controlFor = 0;
-                        for(i = 0; i < nUsuario || controlFor == 0; i++){
+                        for(i = 0; i < *nUsuario || controlFor == 0; i++){
                             if(id == vUsuario[i].Usuario){
                                 controlFor = 1;
                                 vUsuario[i] = vUsuario[*nUsuario];
@@ -224,7 +224,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     }
                     else if(!(strcmp(ci, "NULL") == 0)){
                         controlFor = 0;
-                        for(i = 0; i < nUsuario || controlFor == 0; i++){
+                        for(i = 0; i < *nUsuario || controlFor == 0; i++){
                             if(strcmp(ci, vUsuario[i].Usuario) == 0){
                                 controlFor = 1;
                                 vUsuario[i] = vUsuario[*nUsuario];
@@ -250,7 +250,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     }
                     else if(!(strcmp(ci, "NULL") == 0)){
                         controlFor = 0;
-                        for(i = 0; i < nUsuario || controlFor == 0; i++){
+                        for(i = 0; i < *nUsuario || controlFor == 0; i++){
                             if(strcmp(ci, vUsuario[i].Nomb_usuario) == 0){
                                 controlFor = 1;
                                 vUsuario[i] = vUsuario[*nUsuario];
@@ -294,7 +294,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
             }
             else if(!(id == 32765)){
                 controlFor = 0;
-                for(i = 0; i < nUsuario || controlFor == 0; i++){
+                for(i = 0; i < *nUsuario || controlFor == 0; i++){
                     if(id == vUsuario[i].Usuario){
                         controlFor = 1;
                         vUsuario[i] = vUsuario[*nUsuario];
@@ -334,7 +334,7 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
     }while(control);
 
     controlFor = 0;
-    for(i = 0; i < nUsuario || controlFor == 0; i++){
+    for(i = 0; i < *nUsuario || controlFor == 0; i++){
         if(id == vUsuario[i].id_usuario){
             i = in;
             controlFor = 1;
@@ -434,6 +434,17 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
 }
 void listaUsuarios(usuario* vUsuario, int* nUsuario){
 
+    int i;
     
+    for(i = 0; i < *nUsuario; i++){
+        printf("%i/%s/%i/%s/%s", vUsuario[i].id_usuario, vUsuario[i].Nomb_usuario, vUsuario[i].Perfil_usuario, vUsuario[i].Usuario, vUsuario[i].Contrasenna);
+    }
     
+}
+
+void siguenteid(){
+
+}
+void descartarid(int n){
+
 }
