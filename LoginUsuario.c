@@ -19,9 +19,9 @@ char in = 168;
 //cambiar para que no se permita el caracter -
 
 int iniciarSesion(char* s_usuario, char* s_contraseñnna, usuario* vUsuario, int nUsuario);
-void dardeAltaUsuario(usuario*, int* nUsuario);
-void dardeBajaUsuario(usuario*, int* nUsuario);
-void modificarUsuario(usuario*, int* nUsuario);
+void dardeAltaUsuario(usuario**, int* nUsuario);
+void dardeBajaUsuario(usuario**, int* nUsuario);
+void modificarUsuario(usuario**, int* nUsuario);
 void listaUsuarios(usuario*, int* nUsuario);
 void siguenteid();
 void descartarid(int n);
@@ -71,6 +71,11 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
             get();
             control = 1;
         }
+        else if(strchr(ci, '-') == NULL){
+            printf("\nError, caracter no permitico, intentelo de nuevo.\n");
+            get();
+            control = 1;
+        }
         else {
             strcpy((*vUsuario)[*nUsuario].Usuario, ci);
         }
@@ -89,6 +94,11 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
             get();
             control = 1;
         }
+        else if(strchr(ci, '-') == NULL){
+            printf("\nError, caracter no permitico, intentelo de nuevo.\n");
+            get();
+            control = 1;
+        }
         else{
             strcpy((*vUsuario)[*nUsuario].Contrasenna, ci);
         }
@@ -102,6 +112,11 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
         }
         else if(strlen(ci>21)){
             printf("\nError, el nombre es demasiado larga, introduce solo el primer apellido o utiliza abreviatura.\n");
+            get();
+            control = 1;
+        }
+        else if(strchr(ci, '-') == NULL){
+            printf("\nError, caracter no permitico, intentelo de nuevo.\n");
             get();
             control = 1;
         }
@@ -221,6 +236,11 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
                         get();
                         control = 1;
                     }
+                    else if(strchr(ci, '-') == NULL){
+                        printf("\nError, caracter no permitico, intentelo de nuevo.\n");
+                        get();
+                        control = 1;
+                    }
                     else if(!(strcmp(ci, "NULL") == 0)){
                         controlFor = 0;
                         for(i = 0; i < *nUsuario || controlFor == 0; i++){
@@ -244,6 +264,11 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
                     }
                     else if(strlen(ci>21)){
                         printf("\nError, el nombre es demasiado larga, introduce solo el primer apellido o utiliza abreviatura.\n");
+                        get();
+                        control = 1;
+                    }
+                    else if(strchr(ci, '-') == NULL){
+                        printf("\nError, caracter no permitico, intentelo de nuevo.\n");
                         get();
                         control = 1;
                     }
@@ -358,6 +383,11 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
                     get();
                     control = 1;
                 }
+                else if(strchr(ci, '-') == NULL){
+                    printf("\nError, caracter no permitico, intentelo de nuevo.\n");
+                    get();
+                    control = 1;
+                }
                 else {
                     strcpy((*vUsuario)[in].Usuario, ci);
                 }
@@ -378,6 +408,11 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
                     get();
                     control = 1;
                 }
+                else if(strchr(ci, '-') == NULL){
+                    printf("\nError, caracter no permitico, intentelo de nuevo.\n");
+                    get();
+                    control = 1;
+                }
                 else {
                     strcpy((*vUsuario)[in].Usuario, ci);
                 }
@@ -395,6 +430,11 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
                 }
                 else if(strlen(ci)>9){
                     printf("\nError, la contrase%ca es demasiado larga, intentelo de nuevo.\n", ñ);
+                    get();
+                    control = 1;
+                }
+                else if(strchr(ci, '-') == NULL){
+                    printf("\nError, caracter no permitico, intentelo de nuevo.\n");
                     get();
                     control = 1;
                 }
@@ -506,7 +546,38 @@ void descargarUsuarios(usuario* vUsuarios, int nUsuarios){
     fclose(archivo);
     free(archivo);
 }
-void menuPrincipal(){
+void menuPrincipal(usuario* vUsuario, int *nUsuario){
+
+    char* user;
+    char* cont;
+
+    int control = 0, i = 0;
+
+    printf("################################\n########Cuaderno Dijital########\n################################\n\nUsuario:");
+    do{     
+        control = 0;
+        printf("Usuario:");
+        scanf("%s", user);
+        printf("contrase%a", ñ);
+        scanf("%s", cont);
+        if (user[0] == '\0' || cont[0] == '\0'){
+            printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
+            get();
+            control = 1;
+        }
+        else if(strlen(user)>6 || strlen(cont)>9){
+            printf("\nError, el usuario es demasiado largo, intentelo de nuevo.\n");
+            get();
+            control = 1;
+        }
+        else {
+            control = !(iniciarSesion(user, cont, vUsuario, &nUsuario));
+            if (control == 1){
+                printf("\nError, usuario incorrecto o contrase%ca, intentelo de nuevo.\n", ñ);
+                get();
+            }
+        }
+    }while(control);
 
 }
 void gestionarUsuario(usuario** vUsuario, int nUsuario){
