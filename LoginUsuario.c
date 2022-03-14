@@ -16,6 +16,7 @@ char ñ = 164;
 char in = 168;
 
 //cambiar los parematros de entrada del leer documentos
+//cambiar para que no se permita el caracter -
 
 int iniciarSesion(char* s_usuario, char* s_contraseñnna, usuario* vUsuario, int nUsuario);
 void dardeAltaUsuario(usuario*, int* nUsuario);
@@ -43,8 +44,7 @@ int iniciarSesion(char* s_usuario, char* s_contrasenna, usuario* vUsuario, int n
     return salida;
         
 }
-
-void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
+void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
 
     char* ci;   //cadena intermedia
     char ca;    //caracter administrador
@@ -53,10 +53,11 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
 
     int control = 0,i = 0,controlFor = 0;
 
-    vUsuario = (usuario*)realloc(vUsuario, ++(*nUsuario) * sizeof(usuario));
+    //añade un nuevo espacio al vector dinamico
+    *vUsuario = (usuario*)realloc(*vUsuario, ++(*nUsuario) * sizeof(usuario));
 
     printf("Datos del nuevo usuario:\n\n");
-    do{
+    do{     
         control = 0;
         printf("Usuario:");
         scanf("%s", ci);
@@ -71,7 +72,7 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
             control = 1;
         }
         else {
-            strcpy(vUsuario[*nUsuario].Usuario, ci);
+            strcpy((*vUsuario)[*nUsuario].Usuario, ci);
         }
     }while(control);
     do{
@@ -89,7 +90,7 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
             control = 1;
         }
         else{
-            strcpy(vUsuario[*nUsuario].Contrasenna, ci);
+            strcpy((*vUsuario)[*nUsuario].Contrasenna, ci);
         }
     }while(control);
     do{
@@ -97,7 +98,7 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
         printf("Nombre del usuario:");
         scanf("%s", ci);
         if (ci[0] == '\0'){
-            strcpy(vUsuario[*nUsuario].Nomb_usuario, "ANONIMO");
+            strcpy((*vUsuario)[*nUsuario].Nomb_usuario, "ANONIMO");
         }
         else if(strlen(ci>21)){
             printf("\nError, el nombre es demasiado larga, introduce solo el primer apellido o utiliza abreviatura.\n");
@@ -107,12 +108,12 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
         else{
             controlFor = 0;
             for(i = 0; i < nUsuario || controlFor; i++){
-                if(strcmp(ci, vUsuario[i].Usuario) == 0){
+                if(strcmp(ci, (*vUsuario)[i].Usuario) == 0){
                     controlFor = 1;
                 }
             }
             if (controlFor == 0){
-                strcpy(vUsuario[*nUsuario].Nomb_usuario, ci);
+                strcpy((*vUsuario)[*nUsuario].Nomb_usuario, ci);
             }
             else{
                 printf("\nEste nombre ya esta registrado, utiliza otro nombre.\n");
@@ -126,10 +127,10 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
         printf("%csera un usuario administrador? (s/n)\n",in);
         scanf("%c", &ca);
         if (ca == 's' || ca == 'S'){
-            vUsuario[*nUsuario].Perfil_usuario = 0;
+            (*vUsuario)[*nUsuario].Perfil_usuario = 0;
         }
         else if(ca == 'n' || ca == 'N'){
-            vUsuario[*nUsuario].Perfil_usuario = 1;
+            (*vUsuario)[*nUsuario].Perfil_usuario = 1;
         }
         else {
             printf("\nError, no es uno de los caracteres permitidos, intentelo de nuevo.\n");
@@ -139,16 +140,13 @@ void dardeAltaUsuario(usuario* vUsuario, int* nUsuario){
     }while(control);
     
     if (identificacion.numero[0] > 0){
-        vUsuario[*nUsuario].id_usuario = identificacion.ultimo;
+        (*vUsuario)[*nUsuario].id_usuario = identificacion.ultimo;
         siguienteid();
     }
     
 }
-
-
 //da de baja un usuario
-
-void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
+void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
 
     char* ci;
     char ca;
@@ -198,9 +196,9 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     else if(!(id == 32765)){
                         controlFor = 0;
                         for(i = 0; i < *nUsuario || controlFor == 0; i++){
-                            if(id == vUsuario[i].Usuario){
+                            if(id == (*vUsuario)[i].Usuario){
                                 controlFor = 1;
-                                vUsuario[i] = vUsuario[*nUsuario];
+                                (*vUsuario)[i] = (*vUsuario)[*nUsuario];
                                 (*nUsuario)--;
                                 descartarid(i);
                             }
@@ -226,9 +224,9 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     else if(!(strcmp(ci, "NULL") == 0)){
                         controlFor = 0;
                         for(i = 0; i < *nUsuario || controlFor == 0; i++){
-                            if(strcmp(ci, vUsuario[i].Usuario) == 0){
+                            if(strcmp(ci, (*vUsuario)[i].Usuario) == 0){
                                 controlFor = 1;
-                                vUsuario[i] = vUsuario[*nUsuario];
+                                (*vUsuario)[i] = (*vUsuario)[*nUsuario];
                                 (*nUsuario)--;
                                 descartarid(i);
                             }
@@ -242,7 +240,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     printf("Nombre del usuario:");
                     scanf("%s", ci);
                     if (ci[0] == '\0'){
-                        strcpy(vUsuario[*nUsuario].Nomb_usuario, "ANONIMO");
+                        strcpy((*vUsuario)[*nUsuario].Nomb_usuario, "ANONIMO");
                     }
                     else if(strlen(ci>21)){
                         printf("\nError, el nombre es demasiado larga, introduce solo el primer apellido o utiliza abreviatura.\n");
@@ -252,15 +250,15 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
                     else if(!(strcmp(ci, "NULL") == 0)){
                         controlFor = 0;
                         for(i = 0; i < *nUsuario || controlFor == 0; i++){
-                            if(strcmp(ci, vUsuario[i].Nomb_usuario) == 0){
+                            if(strcmp(ci, (*vUsuario)[i].Nomb_usuario) == 0){
                                 controlFor = 1;
-                                vUsuario[i] = vUsuario[*nUsuario];
+                                (*vUsuario)[i] = (*vUsuario)[*nUsuario];
                                 (*nUsuario)--;
                                 descartarid(i);
                             }
                         }
                         if (controlFor == 0){
-                            strcpy(vUsuario[*nUsuario].Nomb_usuario, ci);
+                            strcpy((*vUsuario)[*nUsuario].Nomb_usuario, ci);
                         }
                         else{
                             printf("\nEste nombre ya esta registrado, utiliza otro nombre.\n");
@@ -279,7 +277,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
 
     }
     else {
-        do{         //eleccion de
+        do{         //conoce el usuario
             control = 0;
             printf("ID_Usuario:");
             scanf("%i", &id);
@@ -296,9 +294,9 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
             else if(!(id == 32765)){
                 controlFor = 0;
                 for(i = 0; i < *nUsuario || controlFor == 0; i++){
-                    if(id == vUsuario[i].Usuario){
+                    if(id == (*vUsuario)[i].Usuario){
                         controlFor = 1;
-                        vUsuario[i] = vUsuario[*nUsuario];
+                        (*vUsuario)[i] = (*vUsuario)[*nUsuario];
                         (*nUsuario)--;
                         descartarid(i);
                     }
@@ -310,8 +308,7 @@ void dardeBajaUsuario(usuario* vUsuario, int* nUsuario){
 
     vUsuario = (usuario*)realloc(vUsuario, --(*nUsuario) * sizeof(usuario));
 }       //mirar para hacerlo funciones para mayor legibilidad
-
-void modificarUsuario(usuario* vUsuario, int* nUsuario){
+void modificarUsuario(usuario** vUsuario, int* nUsuario){
 
     char* ci;
     char ca;
@@ -336,7 +333,7 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
 
     controlFor = 0;
     for(i = 0; i < *nUsuario || controlFor == 0; i++){
-        if(id == vUsuario[i].id_usuario){
+        if(id == (*vUsuario)[i].id_usuario){
             i = in;
             controlFor = 1;
         }
@@ -362,7 +359,7 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
                     control = 1;
                 }
                 else {
-                    strcpy(vUsuario[in].Usuario, ci);
+                    strcpy((*vUsuario)[in].Usuario, ci);
                 }
             }while(control);
         }
@@ -382,7 +379,7 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
                     control = 1;
                 }
                 else {
-                    strcpy(vUsuario[in].Usuario, ci);
+                    strcpy((*vUsuario)[in].Usuario, ci);
                 }
             }while(control);
         }
@@ -402,7 +399,7 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
                     control = 1;
                 }
                 else{
-                    strcpy(vUsuario[in].Contrasenna, ci);
+                    strcpy((*vUsuario)[in].Contrasenna, ci);
                 }
             }while(control);
         }
@@ -412,10 +409,10 @@ void modificarUsuario(usuario* vUsuario, int* nUsuario){
                 printf("%csera un usuario administrador? (s/n)\n",in);
                 scanf("%c", &ca);
                 if (ca == 's' || ca == 'S'){
-                    vUsuario[in].Perfil_usuario = 0;
+                    (*vUsuario)[in].Perfil_usuario = 0;
                 }
                 else if(ca == 'n' || ca == 'N'){
-                    vUsuario[in].Perfil_usuario = 1;
+                    (*vUsuario)[in].Perfil_usuario = 1;
                 }
                 else {
                     printf("\nError, no es uno de los caracteres permitidos, intentelo de nuevo.\n");
@@ -442,10 +439,76 @@ void listaUsuarios(usuario* vUsuario, int* nUsuario){
     }
     
 }
-
 void siguenteid(){
-
+    
+    int i, control = 1;
+    if (identificacion.numero[0] < 999){
+        for(i = 0; i < 1000 && control; i++){
+            if(identificacion.numero[i] = 0){
+                control = 0;
+                identificacion.ultimo = i;
+            }
+        }
+        identificacion.numero[0]++;
+    }
 }
 void descartarid(int n){
+
+    identificacion.numero[n] = 0;
+    if (identificacion.ultimo > n){
+        identificacion.ultimo = n;
+    }
+}
+
+void cargarUsuarios(usuario** vUsuarios, int* nUsuarios){
+    FILE* archivo;
+    usuario tem;
+    int n = 0;
+
+    archivo = fopen("usuario.txt", "r");
+
+    while(feof(archivo)){
+        fscanf(archivo, "%[^\n]\n");
+        (*nUsuarios)++;
+    }
+
+    *vUsuarios = (usuario*)malloc((*nUsuarios)*sizeof(usuario*));
+    rewind(archivo);
+
+    while (n < (*nUsuarios)){
+
+        fscanf(archivo, "%i/%[^-]/%i/%[^-]/%[^-]\n", tem.id_usuario, tem.Nomb_usuario, tem.Perfil_usuario, tem.Usuario, tem.Contrasenna);
+        (*vUsuarios)[n].id_usuario = tem.id_usuario;
+        strcpy((*vUsuarios)[n].Nomb_usuario, tem.Nomb_usuario);
+        (*vUsuarios)[n].Perfil_usuario = tem.Perfil_usuario;
+        strcpy((*vUsuarios)[n].Usuario, tem.Usuario);
+        strcpy((*vUsuarios)[n].Contrasenna, tem.Contrasenna);
+        n++;
+    }
+
+    fclose(archivo);
+    free(archivo);
+}
+void descargarUsuarios(usuario* vUsuarios, int nUsuarios){
+    FILE* archivo;
+    usuario tem;
+    int n = 0;
+
+    archivo = fopen("usuario.txt", "w");
+
+    while (n < nUsuarios){
+
+        fprintf(archivo, "%i/%s/%i/%s/%s\n", vUsuarios[n].id_usuario, vUsuarios[n].Nomb_usuario, vUsuarios[n].Perfil_usuario, vUsuarios[n].Usuario, vUsuarios[n].Contrasenna);
+        n++;
+
+    }
+
+    fclose(archivo);
+    free(archivo);
+}
+void menuPrincipal(){
+
+}
+void gestionarUsuario(usuario** vUsuario, int nUsuario){
 
 }
