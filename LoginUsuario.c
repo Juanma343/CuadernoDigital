@@ -5,7 +5,7 @@
 //de esta forma tenemos controlados el numeo de ids disponibles de foma mas sencill y visible
 //ademas la estructura almacenara la menor id disponible lo que sumado a que este vector tiempre estara ordenado aumenta la eficuencia de la eleccion de entero
 //esto para numero pequeños no es realmete un coste demasiado dispar al de este pero teneiendo pero esto creo que es lo realmente correcto para los casos generales sin ver el contezto de este proyecto
-struct identificacion_usuario
+struct identificacion_usuario //meter en una nestructura mas grande con la otra estructura
 {
     int numero[1000];
     int ultimo;
@@ -342,7 +342,7 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
     
     do{
         control = 0;
-        printf("Id del usuario a eliminar\n");
+        printf("Id del usuario a modificar\n");
         scanf("%i", &id);
         if (id >= 1000){
             printf("\nError, numero incorrecto, intentelo de nuevo.\n");
@@ -529,7 +529,7 @@ void cargarUsuarios(usuario** vUsuarios, int* nUsuarios){
     fclose(archivo);
     free(archivo);
 }
-void descargarUsuarios(usuario* vUsuarios, int nUsuarios){
+void descargarUsuarios(usuario* vUsuarios, int* nUsuarios){
     FILE* archivo;
     usuario tem;
     int n = 0;
@@ -581,5 +581,32 @@ void menuPrincipal(usuario* vUsuario, int *nUsuario){
 
 }
 void gestionarUsuario(usuario** vUsuario, int nUsuario){
+    
+    int control, op;
 
+    
+
+    do{
+        control = 0;
+        printf("%cQue desea realizar?\n\n1.Dar de alta a un nuevo usuario.\n2.Dar de baja a un usuario\n3.Modificar un usuario\n5.Salir\n",in);
+        scanf("%i", &op);
+        if (op > 5 || op >1){
+            printf("\nError, no existe esta opcion intentalo de nuevo, intentelo de nuevo.\n");
+            get();
+            control = 1;
+        }
+    }while(control);
+
+    if (op == 1 ){
+        void dardeAltaUsuario(usuario**, int* nUsuario);
+    }
+    else if (op == 2 ){
+        void dardeBajaUsuario(usuario**, int* nUsuario);
+    }
+    else if (op == 3 ){
+        void modificarUsuario(usuario**, int* nUsuario);
+    }
+    else if (op == 4 ){
+        void listaUsuarios(usuario*, int* nUsuario);
+    }
 }
