@@ -8,13 +8,14 @@ typedef struct matricula
 {
     int Id_materia;
     int Id_alum;
-};
+}matriculas;
 
-void CargarMatriculas(matricula** matric, int* num_matric);
-void GuardarMatriculas(matricula* matric, int num_matric);
-void ModificarMatricula(matricula* matric, int id_alum, int id_antiguaMat, int id_nuevaMat, int num_matric);
-void EliminarMatricula(matricula* matric, int id_alum, int id_mat, int* num_matric);
-void CrearMatricula(matricula* matric, int id_alum, int id_mat, int* num_matric);
+void CargarMatriculas(matriculas** matric, int* num_matric);
+void GuardarMatriculas(matriculas* matric, int num_matric);
+void ListaAlumnosMatricula(char** ids, int id_materia, matriculas* matric, int num_matric, int* num_ids);
+void ModificarMatricula(matriculas* matric, int id_alum, int id_antiguaMat, int id_nuevaMat, int num_matric);
+void EliminarMatricula(matriculas* matric, int id_alum, int id_mat, int* num_matric);
+void CrearMatricula(matriculas* matric, int id_alum, int id_mat, int* num_matric);
 //LISTA MATRICULA -> SELECCIONA ASIGNATURA A MODIFICAR ->
 //LISTA TODAS ASIGNATURAS DISPONIBLES -> SELECCIONA NUEVA ASIGNATURA
 #endif
