@@ -20,7 +20,7 @@ void CargarAlumnos(alumnos** alum, int* num_alumnos){
     
     while (n < *num_alumnos)
     {
-        fscanf("%[^-]/%[^-]/%[^-]/%[^-]/%[^-]/%[^-]\n", temp.Id_alum, temp.Nombre_alum, temp.Direc_alum, temp.Local_alum, temp.Curso, temp.Grupo);
+        fscanf(file, "%[^-]%[^-]%[^-]%[^-]%[^-]%[^-]\n", temp.Id_alum, temp.Nombre_alum, temp.Direc_alum, temp.Local_alum, temp.Curso, temp.Grupo);
         strcpy((*alum)[n].Id_alum, temp.Id_alum);
         strcpy((*alum)[n].Nombre_alum, temp.Nombre_alum);
         strcpy((*alum)[n].Direc_alum, temp.Direc_alum);
