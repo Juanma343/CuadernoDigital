@@ -12,6 +12,7 @@ typedef struct
     int Perfil_usuario;     //si es administrador es 0, si es profeso es 1
     char Usuario[6];
     char Contrasenna[9];
+    
 } usuario;
 
 
