@@ -507,16 +507,13 @@ void cargarUsuarios(usuario** vUsuarios, int* nUsuarios){
 
     archivo = fopen("./usuarios.txt", "r");
 
-    while(!feof(archivo)){
-        if(fgetc(archivo) == '\n'){
-            (*nUsuarios)++;
-        }
-    }
+    *vUsuarios = NULL;
+    (*nUsuarios) = 0;
 
-    *vUsuarios = (usuario*)malloc((*nUsuarios)*sizeof(usuario*));
-    rewind(archivo);
+    while (!feof(archivo)){
 
-    while (n < (*nUsuarios)){
+        (*nUsuarios)++;
+        *vUsuarios = (usuario*)realloc(*vUsuarios,(*nUsuarios)*sizeof(usuario));
 
         fscanf(archivo, "%i-%[^-]-%i-%[^-]-%[^\n]\n", &tem.id_usuario, tem.Nomb_usuario, &tem.Perfil_usuario, tem.Usuario, tem.Contrasenna);
         (*vUsuarios)[n].id_usuario = tem.id_usuario;
@@ -525,6 +522,7 @@ void cargarUsuarios(usuario** vUsuarios, int* nUsuarios){
         strcpy((*vUsuarios)[n].Usuario, tem.Usuario);
         strcpy((*vUsuarios)[n].Contrasenna, tem.Contrasenna);
         n++;
+        printf("%i\n", *nUsuarios);
     }
 
     fclose(archivo);
@@ -535,13 +533,11 @@ void descargarUsuarios(usuario* vUsuarios, int* nUsuarios){
     usuario tem;
     int n = 0;
 
-    archivo = fopen("usuario.txt", "w");
+    archivo = fopen("usuarios.txt", "w");
 
-    while (n < *nUsuarios){
-
-        printf("%i\n%s\n%i\n%s\n%s\n", vUsuarios[n].id_usuario, vUsuarios[n].Nomb_usuario, vUsuarios[n].Perfil_usuario, vUsuarios[n].Usuario , vUsuarios[n].Contrasenna);
-        printf(">>%i<<<<\n",vUsuarios[n].id_usuario);
-        fprintf(archivo, "%i\n%s\n%i\n%s\n", vUsuarios[n].id_usuario, vUsuarios[n].Nomb_usuario, 3, "admin");
+    while (n < (*nUsuarios)){
+        //printf("%i\n", *nUsuarios);
+        fprintf(archivo, "%i-%s-%i-%s-%s\n", vUsuarios[n].id_usuario, vUsuarios[n].Nomb_usuario, vUsuarios[n].Perfil_usuario, vUsuarios[n].Usuario, vUsuarios[n].Contrasenna);
         n++;
 
     }
@@ -550,17 +546,17 @@ void descargarUsuarios(usuario* vUsuarios, int* nUsuarios){
 }
 void menuPrincipal(usuario* vUsuario, int *nUsuario){
 
-    char* user;
-    char* cont;
+    char* user = malloc(12*sizeof(char));
+    char* cont = malloc(12*sizeof(char));
 
     int control = 0, i = 0;
 
-    printf("################################\n########Cuaderno Dijital########\n################################\n\nUsuario:");
+    printf("################################\n########Cuaderno Dijital########\n################################\n\n");
     do{
         control = 0;
         printf("Usuario:");
         scanf("%s", user);
-        printf("contrase%a", ñ);
+        printf("contrase%ca", ñ);
         scanf("%s", cont);
         if (user[0] == '\0' || cont[0] == '\0'){
             printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
@@ -573,6 +569,7 @@ void menuPrincipal(usuario* vUsuario, int *nUsuario){
             control = 1;
         }
         else {
+            printf("hola");
             control = !(iniciarSesion(user, cont, vUsuario, &nUsuario));
             if (control == 1){
                 printf("\nError, usuario incorrecto o contrase%ca, intentelo de nuevo.\n", ñ);
@@ -590,7 +587,7 @@ void gestionarUsuario(usuario** vUsuario, int nUsuario){
 
     do{
         control = 0;
-        printf("%cQue desea realizar?\n\n1.Dar de alta a un nuevo usuario.\n2.Dar de baja a un usuario\n3.Modificar un usuario\n5.Salir\n",in);
+        printf("%cQue desea realizar?\n\n1.Dar de alta a un nuevo usuario.\n2.Dar de baja a un usuario\n3.Modificar un usuario\n4.Salir\n",in);
         scanf("%i", &op);
         if (op > 5 || op >1){
             printf("\nError, no existe esta opcion intentalo de nuevo, intentelo de nuevo.\n");
@@ -603,5 +600,9 @@ void gestionarUsuario(usuario** vUsuario, int nUsuario){
         dardeAltaUsuario(&vUsuario, &nUsuario);
     }
     else if (op == 2){
+        dardeBajaUsuario(&vUsuario, &nUsuario);
+    }
+    else if (op == 3){
+        modificarUsuario(&vUsuario, &nUsuario);
     }
 }//error terminar de nuevo

@@ -1,4 +1,2 @@
-1
-Juan Pérez
-3
-admin
+1-Juan Pérez-0-admin-hola
+2-juanma-1-juan-papa
