@@ -30,7 +30,7 @@ void menuPrincipal(usuario* vUsuario, int *nUsuario);
 
 //pre: se le da el vector de usuarios
 //pos: muetra las diferentes opciones y las realiza
-void gestionarUsuario(usuario** vUsuarios, int nUsuarios);
+void gestionarUsuario(usuario** vUsuarios, int* nUsuarios);
 
 
 #endif
