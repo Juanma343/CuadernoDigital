@@ -17,6 +17,17 @@ void vaciarbufer(){
     char c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
+void entrada(char* ci){
+    if ((strlen(ci) > 0) && (ci[strlen(ci) - 1] != '\0'))
+    {
+        ci[strlen(ci) - 1] = '\0';
+    }
+    if (strlen(ci) >= 30){
+
+        //vaciarbufer();
+    }
+
+}
 int iniciarSesion(char* s_usuario, char* s_contraseñnna, usuario* vUsuario, int nUsuario);
 void dardeAltaUsuario(usuario**, int* nUsuario);
 void dardeBajaUsuario(usuario**, int* nUsuario);
@@ -121,8 +132,8 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
     do{
         control = 0;
         printf("Nombre del usuario:");
-        scanf("%[^\n]", ci);
-        vaciarbufer();
+        fgets(ci, 30, stdin);
+        entrada(ci);
         if (ci[0] == '\0'){
             strcpy((*vUsuario)[(*nUsuario) - 1].Nomb_usuario, "ANONIMO");
         }
@@ -169,7 +180,6 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
             }
         }
         if(control){
-            printf("%i", i);
             (*vUsuario)[*nUsuario - 1].id_usuario = i;
             control2 = 0;
         }
@@ -249,8 +259,8 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
                 do{
                     control = 0;
                     printf("Nombre del usuario:");
-                    scanf("%[^\n]", ci);
-                    vaciarbufer();
+                    fgets(ci, 30, stdin);
+                    entrada(ci);
                     if(strlen(ci)>20){
                         printf("\nError, el nombre es demasiado larga, introduce solo el primer apellido o utiliza abreviatura.\n");
                         
@@ -382,10 +392,10 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
                 control = 0;
                 printf("Nombre del usuario:");
                 fgets(ci, 30, stdin);
+                entrada(ci);
                 if ((strlen(ci) > 0) && (ci[strlen(ci) - 1] == '\n')){
                     ci[strlen(ci) - 1] = '\0';
                 }
-                vaciarbufer();
                 if (ci[0] == '\0'){
                     printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
                     control = 1;
