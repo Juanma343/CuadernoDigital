@@ -1,6 +1,7 @@
 #include "LoginUsuario.h"
-#include<locale.h> 
-#define ñ 164
+#include <locale.h> 
+#include <locale.h>
+#define ñ 164   
 #define in 168
 
 
@@ -12,7 +13,10 @@
 
 //cambiar los parematros de entrada del leer documentos
 //cambiar para que no se permita el caracter -
-
+void vaciarbufer(){
+    char c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 int iniciarSesion(char* s_usuario, char* s_contraseñnna, usuario* vUsuario, int nUsuario);
 void dardeAltaUsuario(usuario**, int* nUsuario);
 void dardeBajaUsuario(usuario**, int* nUsuario);
@@ -55,9 +59,8 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
     do{
         control = 0;
         printf("Usuario:");
-        fflush(stdin);
         scanf("%s", ci);
-        fflush(stdin);
+        vaciarbufer();
         if (ci[0] == '\0'){
             printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
             
@@ -94,9 +97,8 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
     do{
         control = 0;
         printf("Contrase%ca;", ñ);
-        fflush(stdin);
         scanf("%s", ci);
-        fflush(stdin);
+        vaciarbufer();
         if (ci[0] == '\0'){
             printf("\nError, no ha escrito ninguna contraseña, intentelo de nuevo.\n");
             
@@ -119,9 +121,8 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
     do{
         control = 0;
         printf("Nombre del usuario:");
-        fflush(stdin);
-        scanf("%s", ci);
-        fflush(stdin);
+        scanf("%[^\n]", ci);
+        vaciarbufer();
         if (ci[0] == '\0'){
             strcpy((*vUsuario)[(*nUsuario) - 1].Nomb_usuario, "ANONIMO");
         }
@@ -142,9 +143,8 @@ void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
     do{
         control = 0;
         printf("%csera un usuario administrador? (s/n)\n",in);
-        fflush(stdin);
         scanf("%s", ci);
-        fflush(stdin);
+        vaciarbufer();
         if (ci[0] == 's' || ci[0] == 'S'){
             (*vUsuario)[(*nUsuario) - 1].Perfil_usuario = 1;
         }
@@ -188,9 +188,8 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
     do{
         control = 0;
         printf("%cSabes que usuario quieres eliminar? (s/n)\n", in);
-        fflush(stdin);
         scanf("%s", ci);
-        fflush(stdin);
+        vaciarbufer();
         if (ci[0] == 's' || ci[0] == 'S'){
             eleccion = 0;
         }
@@ -211,16 +210,14 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
         do{
             control = 0;
             printf("Selecciona una:\n\n1-Usuario\n2-Nombre Usuario\n\n");
-            fflush(stdin);
             scanf("%i", &seleccion);
-            fflush(stdin);
+            vaciarbufer();
             if(seleccion == 1){
                 do{
                     control = 0;
                     printf("Usuario:");
-                    fflush(stdin);
                     scanf("%s", ci);
-                    fflush(stdin);
+                    vaciarbufer();
                     if (ci[0] == '\0'){
                         printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
                         
@@ -252,12 +249,8 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
                 do{
                     control = 0;
                     printf("Nombre del usuario:");
-                    fflush(stdin);
-                    fflush(stdout);
-                    scanf("%s", ci);
-                    //fgets(ci, 29,stdin);
-                    printf("%s", ci);
-                    fflush(stdin);
+                    scanf("%[^\n]", ci);
+                    vaciarbufer();
                     if(strlen(ci)>20){
                         printf("\nError, el nombre es demasiado larga, introduce solo el primer apellido o utiliza abreviatura.\n");
                         
@@ -291,9 +284,8 @@ void dardeBajaUsuario(usuario** vUsuario, int* nUsuario){
         do{         //conoce el usuario
             control = 0;
             printf("ID_Usuario:");
-            fflush(stdin);
             scanf("%i", &id);
-            fflush(stdin);
+            vaciarbufer();
             if (id > 1000 ){
                 printf("\nError, numero incorrecto, intentelo de nuevo.\n");
                 
@@ -333,6 +325,7 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
         control = 0;
         printf("Id del usuario a modificar\n");
         scanf("%i", &id);
+        vaciarbufer();
         if (id >= 1000){
             printf("\nError, numero incorrecto, intentelo de nuevo.\n");
             
@@ -357,11 +350,13 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
         control = 0;
         printf("Selecciona una:\n\n1-Usuario\n2-Nombre Usuario\n3-Contraseña\n4-Perfil\n\n");
         scanf("%i", &seleccion);
+        vaciarbufer();
         if (seleccion == 1){
             do{
                 control = 0;
                 printf("Usuario:");
                 scanf("%s", ci);
+                vaciarbufer();
                 if (ci[0] == '\0'){
                     printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
                     
@@ -386,10 +381,13 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
             do{
                 control = 0;
                 printf("Nombre del usuario:");
-                scanf("%s", ci);
+                fgets(ci, 30, stdin);
+                if ((strlen(ci) > 0) && (ci[strlen(ci) - 1] == '\n')){
+                    ci[strlen(ci) - 1] = '\0';
+                }
+                vaciarbufer();
                 if (ci[0] == '\0'){
                     printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
-                    
                     control = 1;
                 }
                 else if(strlen(ci)>21){
@@ -412,6 +410,7 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
                 control = 0;
                 printf("Contrase%ca;", ñ);
                 scanf("%s", ci);
+                vaciarbufer();
                 if (ci[0] == '\0'){
                     printf("\nError, no ha escrito ninguna contraseña, intentelo de nuevo.\n");
                     
@@ -437,6 +436,7 @@ void modificarUsuario(usuario** vUsuario, int* nUsuario){
                 control = 0;
                 printf("%csera un usuario administrador? (s/n)\n",in);
                 scanf("%s", ci);
+                vaciarbufer();
                 if (ci[0] == 's' || ci[0] == 'S'){
                     (*vUsuario)[it].Perfil_usuario = 1;
                 }
@@ -530,8 +530,10 @@ void menuPrincipal(usuario* vUsuario, int *nUsuario){
         control = 0;
         printf("Usuario:");
         scanf("%s", user);
+        vaciarbufer();
         printf("contrase%ca:", ñ);
         scanf("%s", cont);
+        vaciarbufer();
         if (user[0] == '\0' || cont[0] == '\0'){
             printf("\nError, no ha escrito ningun nombre, intentelo de nuevo.\n");
             
@@ -562,6 +564,7 @@ void gestionarUsuario(usuario** vUsuario, int* nUsuario){
         control = 0;
         printf("%cQue desea realizar?\n\n1.Dar de alta a un nuevo usuario.\n2.Dar de baja a un usuario\n3.Modificar un usuario\n4.Lista de usuarios\n5.Salir\n",in);
         scanf("%i", &op);
+        vaciarbufer();
         if (op > 6 || op < 1){
             printf("\nError, no existe esta opcion intentalo de nuevo, intentelo de nuevo.\n");
             
