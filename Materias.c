@@ -82,11 +82,11 @@ void BajaMaterias(materias* mat, char* id_mat, int* num_materias){
     mat = (materias*) realloc(mat, --*num_materias * sizeof(materias));
 }
 
-void ModificarMateria(materias* mat, int id_mat, int num_materias){
+void ModificarMateria(materias* mat, char* id_mat, int num_materias){
     printf("Introduce el nuevo Nombre de la materia: ");
     fflush(stdin);
-    scanf("%s", mat[id_mat - 1].Nombre_materia);
+    scanf("%s", mat[atoi(id_mat) - 1].Nombre_materia);
     printf("Introduce la nueva Abreviatura de la materia: ");
     fflush(stdin);
-    scanf("%s", mat[id_mat - 1].Abrev_materia);
+    scanf("%s", mat[atoi(id_mat) - 1].Abrev_materia);
 }
