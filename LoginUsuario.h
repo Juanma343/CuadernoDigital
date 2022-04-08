@@ -24,7 +24,7 @@ void cargarUsuarios(usuario** vUsuarios, int* nUsuarios);
 //pos: al,acena en el archivo elejido 
 void descargarUsuarios(usuario* vUsuarios, int* nUsuarios);
 
-//pre:
+//pre: se le da el vector de usuarios
 //poscaoncicion; pausa la ejecucion del codigo hasta que se inicie sesion algien correctamente 
 void menuPrincipal(usuario* vUsuario, int *nUsuario);
 
