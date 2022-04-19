@@ -50,7 +50,7 @@ int iniciarSesion(char* s_usuario, char* s_contrasenna, usuario* vUsuario, int n
 
     } while (salida && i < nUsuario);
 
-    return salida;
+    return i+1;
 
 }
 void dardeAltaUsuario(usuario** vUsuario, int* nUsuario){
@@ -556,12 +556,13 @@ void menuPrincipal(usuario* vUsuario, int *nUsuario){
         }
         else {
             control = !(iniciarSesion(user, cont, vUsuario, *nUsuario));
-            if (control == 1){
+            if (control == 0){
                 printf("\nError, usuario incorrecto o contrase%ca, intentelo de nuevo.\n", ñ);
                 
             }
         }
-    }while(control);
+    }while(control != 0);
+    return vUsuario[control].Perfil_usuario;
 
 }
 void gestionarUsuario(usuario** vUsuario, int* nUsuario){

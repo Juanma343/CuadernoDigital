@@ -26,7 +26,7 @@ void descargarUsuarios(usuario* vUsuarios, int* nUsuarios);
 
 //pre: se le da el vector de usuarios
 //poscaoncicion; pausa la ejecucion del codigo hasta que se inicie sesion algien correctamente 
-void menuPrincipal(usuario* vUsuario, int *nUsuario);
+int menuPrincipal(usuario* vUsuario, int *nUsuario);
 
 //pre: se le da el vector de usuarios
 //pos: muetra las diferentes opciones y las realiza

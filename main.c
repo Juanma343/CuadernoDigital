@@ -26,7 +26,7 @@ int main(){
             printf("2. Cambiar de grupo.");
             printf("3. Salir del programa.");
             scanf("%i", &op);
-            if (op == 1){
+            if (op == 0){
                 int sel;
                 do{
                     sel = 0;
@@ -59,7 +59,7 @@ int main(){
             }else{
                 op = -1;
             }
-        }else if (tipo == 0){
+        }else if (tipo == 1){
             op = 0;
             int sel = 0, id;
             printf("1. Usuarios.\n");
