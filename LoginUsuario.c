@@ -491,7 +491,7 @@ void cargarUsuarios(usuario** vUsuarios, int* nUsuarios){
     usuario tem;
     int n = 0;
 
-    archivo = fopen("./usuarios.txt", "r");
+    archivo = fopen("./usuario.txt", "r");
 
     *vUsuarios = NULL;
     (*nUsuarios) = 0;
