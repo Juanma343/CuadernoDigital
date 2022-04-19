@@ -12,24 +12,25 @@ typedef struct
     int Perfil_usuario;     //si es administrador es 0, si es profeso es 1
     char Usuario[6];
     char Contrasenna[9];
+    
 } usuario;
 
 
 //pre: que el txt este en el en el directorio donde se alojan los archivos
 //pos: Un vector de la estructura usuario cargada con la informacion del archivo
-void cargarUsuarios(usuario** vUsuarios, int nUsuarios);
+void cargarUsuarios(usuario** vUsuarios, int* nUsuarios);
 
 //pre: el vector de datos a alojar
 //pos: al,acena en el archivo elejido 
-void descargarUsuarios(usuario** vUsuarios, int nUsuarios);
+void descargarUsuarios(usuario* vUsuarios, int* nUsuarios);
 
-//pre:
+//pre: se le da el vector de usuarios
 //poscaoncicion; pausa la ejecucion del codigo hasta que se inicie sesion algien correctamente 
-void menuPrincipal();
+void menuPrincipal(usuario* vUsuario, int *nUsuario);
 
 //pre: se le da el vector de usuarios
 //pos: muetra las diferentes opciones y las realiza
-void gestionarUsuario(usuario*);
+void gestionarUsuario(usuario** vUsuarios, int* nUsuarios);
 
 
 #endif
