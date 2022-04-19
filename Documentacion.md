@@ -124,13 +124,21 @@ Esta funcion se encarga de comprobar primero que el usuario existe en el vector,
 1. Pruevas de caja negra 
   
   
-    Para este caso la funcion esta preparada para que dado cualquier cadena devuelva 1 si esta cadena de usuario esta en el vecto y coincide la contraseña o 0 si es cualquier otro usuario. siendo estos casos dos, que el usuario se encuantre y que la contraseña no coincidan o que el usuario no se encuentre, asi que esas seran las tres pruebas de caja negra.
+    Para este caso la funcion esta preparada para que dado cualquier cadena devuelva 1 si esta cadena de usuario esta en el vector y coincide la contraseña o 0 si es cualquier otro usuario. siendo estos casos dos, que el usuario se encuantre y que la contraseña no coincidan o que el usuario no se encuentre, asi que esas seran las tres pruebas de caja negra.
 
-    | Usuario | contraseña | salida |
-    | -- | -- | -- |
-    | Existe | Existe | 1 |
-    | Existe | No Existe | 0 |
-    | No Existe | Indiferente | 0 |
+    Ademas hay que tener en consideracion lo diferentes tipos del tamaño para el vector. En este caso tomaremos los caos en que el vector sea de tamaño 1, 2, y un tamaño albitrario, que en este caso sera 5.
+
+    | Usuario | contraseña | Tam_vec | salida |
+    | -- | -- | -- | -- |
+    | Existe | Existe | 1 | 1 |
+    | Existe | No Existe | 1 | 0 |
+    | No Existe | Indiferente | 1 | 0 |
+    | Existe | Existe | 2 | 1 |
+    | Existe | No Existe | 2 | 0 |
+    | No Existe | Indiferente | 2 | 0 |
+    | Existe | Existe | 5 | 1 |
+    | Existe | No Existe | 5 | 0 |
+    | No Existe | Indiferente | 5 | 0 |
       
 
 2. Pruebas de caja blanca 
