@@ -1,2 +1,12 @@
 *.pdf
 main.c
+*.out
+*.cbp
+*.depend
+*.layout
+*.zip
+*.gch
+bin
+cuaderno
+obj
+*.vscode
