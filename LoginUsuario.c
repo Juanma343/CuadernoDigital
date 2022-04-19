@@ -528,7 +528,7 @@ void descargarUsuarios(usuario* vUsuarios, int* nUsuarios){
 
     fclose(archivo);
 }
-void menuPrincipal(usuario* vUsuario, int *nUsuario){
+int menuPrincipal(usuario* vUsuario, int *nUsuario){
 
     char* user = malloc(12*sizeof(char));
     char* cont = malloc(12*sizeof(char));

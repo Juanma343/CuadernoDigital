@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Matricula.h"
+
 
 #define MAX_ID_MATERIA 4
 #define MAX_NOMBRE_MATERIA 50
@@ -16,6 +16,8 @@ typedef struct materia
     char Nombre_materia[MAX_NOMBRE_MATERIA];
     char Abrev_materia[MAX_ABREV_MATERIA];
 }materias;
+
+#include "Matricula.h"
 
 //MANEJO DE FICHERO
 //pre: Vector dinámico de materias vacio y un puntero a entero con el numero de materias
