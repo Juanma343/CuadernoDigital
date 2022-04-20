@@ -47,7 +47,7 @@ void ListarAlumnos(alumnos* alum, int* num_alumnos);
 //pre: recibe un puntero de alumnos, un string del grupo para listar 
 // y el numero de alumnos
 //pos: muestra por pantalla los alumnos pertenecientes al grupo dado
-void ListarAlumnosDeGrupo(alumnos* alum, matriculas* matric, char* grupo, char* id_materia, int* num_alumnos, int num_matric);
+void ListarAlumnosDeGrupo(alumnos* alum, matriculas* matric, char* grupo, char* id_materia, int* num_alumnos, int* num_matric);
 //pre: recibe un puntero de alumnos, un id de alumno del sistema
 // y el numero de alumnos
 //pos: muestra por pantalla los datos de ese alumno en concreto

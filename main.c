@@ -30,7 +30,7 @@ int main(){
                 int sel;
                 do{
                     sel = 0;
-                    ListarAlumnosDeGrupo(alumno, matricula, "1ºHCSA", "1", &num_alumnos, num_matriculas);
+                    ListarAlumnosDeGrupo(alumno, matricula, "1ºHCSA", "1", &num_alumnos, &num_matriculas);
                     printf("\nSeleccione un alumno: ");
                     fflush(stdin);
                     scanf("%s", idalum);
@@ -111,28 +111,28 @@ int main(){
                     fflush(stdin);
                     scanf("%i", &aux);
                     if (aux == 1){
-                        ListarMateriasMatricula(matricula, (char*)id, num_matriculas, materias);
+                        ListarMateriasMatricula(matricula, (char*)id, &num_matriculas, materias);
                     }else if (aux == 2){
                         char* aMat;
                         char* nMat;
-                        ListarMateriasMatricula(matricula, (char*)id, num_matriculas, materias);
+                        ListarMateriasMatricula(matricula, (char*)id, &num_matriculas, materias);
                         printf("\nIntroduce el ID de la materia a modificar de su matricula: ");
                         scanf("%s", aMat);
                         printf("\nIntroduce el ID de la nueva materia a cursar: ");
                         scanf("%s", nMat);
-                        ModificarMatricula(matricula, (char*)id, aMat, nMat, num_matriculas);
+                        ModificarMatricula(&matricula, (char*)id, aMat, nMat, &num_matriculas);
                     }else if (aux == 3){
                         char* mat;
-                        ListarMateriasMatricula(matricula, (char*)id, num_matriculas, materias);
+                        ListarMateriasMatricula(matricula, (char*)id, &num_matriculas, materias);
                         printf("\nIntroduce el ID de la materia a eliminar de su matricula: ");
                         scanf("%s", mat);
-                        EliminarMatricula(matricula, (char*)id, mat, &num_matriculas);
+                        EliminarMatricula(&matricula, (char*)id, mat, &num_matriculas);
                     }else if (aux == 4){
                         char* mat;
-                        ListarMateriasMatricula(matricula, (char*)id, num_matriculas, materias);
+                        ListarMateriasMatricula(matricula, (char*)id, &num_matriculas, materias);
                         printf("\nIntroduce el ID de la materia a crear: ");
                         scanf("%s", mat);
-                        CrearMatricula(matricula, (char*)id, mat, &num_matriculas);
+                        CrearMatricula(&matricula, (char*)id, mat, &num_matriculas);
                     }
                 }
             }else if (op == 3){
@@ -143,21 +143,21 @@ int main(){
                 printf("\n4. Listar materias.\n");
                 scanf("%i", &sel);
                 if (sel == 1){
-                    AltaMaterias(materias, &num_materias);
+                    AltaMaterias(&materias, &num_materias);
                 }else if (sel == 2){
                     ListarMaterias(materias, num_materias);
                     printf("Introduce el ID de la materia a eliminar: ");
                     int n;
                     scanf("%i", &n);
-                    BajaMaterias(materias, (char*)n, &num_materias);
+                    BajaMaterias(&materias, (char*)n, &num_materias);
                 }else if (sel == 3){
-                    ListarMaterias(materias, num_materias);
+                    ListarMaterias(materias, &num_materias);
                     printf("Introduce el ID de la materia a modificar: ");
                     int n;
                     scanf("%i", &n);
-                    ModificarMateria(materias, (char*)n, &num_materias);
+                    ModificarMateria(&materias, (char*)n, &num_materias);
                 }else if (sel == 4){
-                    ListarMaterias(materias, num_materias);
+                    ListarMaterias(materias, &num_materias);
                 }
             }else if (op == 4){
                 printf("\nNo esta implementado porque no hay modulo Horarios.");

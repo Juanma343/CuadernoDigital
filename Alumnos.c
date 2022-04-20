@@ -32,7 +32,8 @@ void CargarAlumnos(alumnos** alum, int* num_alumnos){
         strcpy((*alum)[n].Direc_alum, temp.Direc_alum);
         strcpy((*alum)[n].Local_alum, temp.Local_alum);
         strcpy((*alum)[n].Curso, temp.Curso);
-        strcpy((*alum)[n].Grupo, temp.Grupo); 
+        strcpy((*alum)[n].Grupo, temp.Grupo);
+        n++; 
     }
 
     fclose(file);   
@@ -49,7 +50,8 @@ void GuardarAlumnos(alumnos* alum, int* num_alumnos){
         n++;
     }
 
-    fclose(file);    
+    fclose(file);
+    free(alum);    
 }
 
 void ListarAlumnos(alumnos* alum, int* num_alumnos){
@@ -61,10 +63,10 @@ void ListarAlumnos(alumnos* alum, int* num_alumnos){
     }
 }
 
-void ListarAlumnosDeGrupo(alumnos* alum, matriculas* matric, char* grupo, char* id_materia, int* num_alumnos, int num_matric){
+void ListarAlumnosDeGrupo(alumnos* alum, matriculas* matric, char* grupo, char* id_materia, int* num_alumnos, int* num_matric){
     int n = 0, num_ids = 0, i = 0;
     char* ids_alum;
-    ListaAlumnosMatricula(&ids_alum, id_materia, matric, num_matric, &num_ids);
+    ListaAlumnosMatricula(&ids_alum, id_materia, matric, &num_matric, &num_ids);
     while (n < (*num_alumnos))
     {
         i = 0;
