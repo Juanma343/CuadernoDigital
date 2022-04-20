@@ -145,7 +145,7 @@ int main(){
                 if (sel == 1){
                     AltaMaterias(&materias, &num_materias);
                 }else if (sel == 2){
-                    ListarMaterias(materias, num_materias);
+                    ListarMaterias(materias, &num_materias);
                     printf("Introduce el ID de la materia a eliminar: ");
                     int n;
                     scanf("%i", &n);
