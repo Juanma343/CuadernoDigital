@@ -1,12 +1,5 @@
 #include "Matricula.h"
 
-void entrada(char* ci){
-    if ((strlen(ci) > 0) && (ci[strlen(ci) - 1] != '\0'))
-    {
-        ci[strlen(ci) - 1] = '\0';
-    }
-}
-
 void CargarMatriculas(matriculas** matric, int* num_matric){
     int n = 0;
     matriculas temp;

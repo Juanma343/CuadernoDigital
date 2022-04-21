@@ -82,7 +82,7 @@ Funciones modulo Usuarios:
 - **Cargar usuarios;**  
     **Precondicion:** se le da el vector de usuarios  
     **Poscaoncicion:** pausa la ejecucion del codigo hasta que se inicie sesion alguien correctamente  
-    ***void menuPrincipal(usuario\* vUsuario, int \*nUsuario);***
+    ***int menuPrincipal(usuario\* vUsuario, int \*nUsuario);***
 
 - **Descargar usuarios**  
     **Precondicion:** se le da el vector de usuarios  
@@ -90,111 +90,111 @@ Funciones modulo Usuarios:
     ***void gestionarUsuario(usuario\*\* vUsuarios, int\* nUsuarios);*** 
 
 Funciones modulo Alumnos:
-- **Cargar alumnos**
-    **Precondicion:** recibe un puntero a un puntero de alumnos y un entero para almacenar la cantidad de alumnos del sistema
-    **Poscondicion:** devuelve el puntero inicializado con los alumnos del fichero y el numero de alumnos
+- **Cargar alumnos**  
+    **Precondicion:** recibe un puntero a un puntero de alumnos y un entero para almacenar la cantidad de alumnos del sistema  
+    **Poscondicion:** devuelve el puntero inicializado con los alumnos del fichero y el numero de alumnos  
     ***void CargarAlumnos(alumnos\*\* alum, int\* num_alumnos);***
 
-- **Descargar alumnos**
-    **Precondicion:** recibe un puntero de alumnos inicializado y el numero de alumnos
-    **Poscondicion:** guarda en el fichero "alumnos.txt" los datos del puntero
+- **Descargar alumnos**  
+    **Precondicion:** recibe un puntero de alumnos inicializado y el numero de alumnos  
+    **Poscondicion:** guarda en el fichero "alumnos.txt" los datos del puntero  
     ***void GuardarAlumnos(alumnos\* alum, int\* num_alumnos);***
 
-- **Listar alumnos**
-    **Precondicion:** recibe un puntero de alumnos y el numero de alumnos del sistema
-    **Poscondicion:** muestra por pantalla todos los alumnos del sistema
+- **Listar alumnos**  
+    **Precondicion:** recibe un puntero de alumnos y el numero de alumnos del sistema  
+    **Poscondicion:** muestra por pantalla todos los alumnos del sistema  
     ***void ListarAlumnos(alumnos\* alum, int\* num_alumnos);***
 
-- **Listar alumnos de un grupo concreto**
-    **Precondicion:** recibe un puntero de alumnos, un string del grupo para listar y el numero de alumnos
-    **Poscondicion:** muestra por pantalla los alumnos pertenecientes al grupo dado
+- **Listar alumnos de un grupo concreto**  
+    **Precondicion:** recibe un puntero de alumnos, un string del grupo para listar y el numero de alumnos  
+    **Poscondicion:** muestra por pantalla los alumnos pertenecientes al grupo dado  
     ***void ListarAlumnosDeGrupo(alumnos\* alum, matriculas\* matric, char\* grupo, char\* id_materia, int\* num_alumnos, int\* num_matric);***
 
-- **Mostrar Ficha de un alumno**
-    **Precondicion:** recibe un puntero de alumnos, un id de alumno del sistema y el numero de alumnos
-    **Poscondicion:** muestra por pantalla los datos de ese alumno en concreto
+- **Mostrar Ficha de un alumno**  
+    **Precondicion:** recibe un puntero de alumnos, un id de alumno del sistema y el numero de alumnos  
+    **Poscondicion:** muestra por pantalla los datos de ese alumno en concreto  
     ***void MostrarFichaAlumno(alumnos\* alum, char\* id_alum, int\* num_alumnos);***
 
-- **Modficiar alumno**
-    **Precondicion:** recibe un puntero de alumnos, un id del alumno del sistema y el numero de alumnos
-    **Poscondicion:** permite modificar uno de los alumnos segun su id 
+- **Modficiar alumno**  
+    **Precondicion:** recibe un puntero de alumnos, un id del alumno del sistema y el numero de alumnos  
+    **Poscondicion:** permite modificar uno de los alumnos segun su id  
     ***void ModificarAlumno(alumnos\*\* alum, char\* id_alum, int\* num_alumnos);***
 
-- **Alta alumno**
-    **Precondicion:** recibe un puntero de alumnos y el numero de alumnos del sistema
-    **Poscondicion:** añade un alumno nuevo al puntero e incrementa en 1 el numero de alumnos
+- **Alta alumno**  
+    **Precondicion:** recibe un puntero de alumnos y el numero de alumnos del sistema  
+    **Poscondicion:** añade un alumno nuevo al puntero e incrementa en 1 el numero de alumnos  
     ***void AltaAlumno(alumnos\*\* alum, int\* num_alumnos);***
 
-- **Baja alumno**
-    **Precondicion:** recibe un puntero de alumnos , el id del alumno y el numero de alumnos del sistema
-    **Poscondicion:** elimina un alumno del puntero y decrementa el numero de alumnos en 1
+- **Baja alumno**  
+    **Precondicion:** recibe un puntero de alumnos , el id del alumno y el numero de alumnos del sistema  
+    **Poscondicion:** elimina un alumno del puntero y decrementa el numero de alumnos en 1  
     ***void BajaAlumno(alumnos\*\* alum, int id_alum, int\* num_alumnos);***
 
 Funciones modulo Materias:
-- **Cargar materias**
-    **Precondicion:** Vector dinámico de materias vacio y un puntero a entero con el numero de materias
-    **Poscondicion:** Vuelca en el vector dinámico el contenido del fichero "materias.txt" y guarda el número de materias en su variable
+- **Cargar materias**  
+    **Precondicion:** Vector dinámico de materias vacio y un puntero a entero con el numero de materias  
+    **Poscondicion:** Vuelca en el vector dinámico el contenido del fichero "materias.txt" y guarda el número de materias en su variable  
     ***void CargarMaterias(materias\*\* mat, int\* num_materias);***
 
-- **Descargar materias**
-    **Precondicion:** Vector dinámico de materias con valores y el número de materias del vector
-    **Poscondicion:** Guarda en el fichero "materias.txt" el contenido del vector dinámico
+- **Descargar materias**  
+    **Precondicion:** Vector dinámico de materias con valores y el número de materias del vector  
+    **Poscondicion:** Guarda en el fichero "materias.txt" el contenido del vector dinámico  
     ***void GuardarMaterias(materias\* mat, int\* num_materias);***
 
-- **Listar materias**
-    **Precondicion:** Vector dinámico de materias con valores y el número de materias del vector
-    **Poscondicion:** Imprime por pantalla todas las materias del vector de una en una
+- **Listar materias**  
+    **Precondicion:** Vector dinámico de materias con valores y el número de materias del vector  
+    **Poscondicion:** Imprime por pantalla todas las materias del vector de una en una  
     ***void ListarMaterias(materias\* mat, int\* num_materias);***
 
-- **Alta materias**
-    **Precondicion:** Vector dinámico de materias con valores y el puntero del número de materias
-    **Poscondicion:** Añade al vector una nueva materia e incrementa en 1 el número de materias
+- **Alta materias**  
+    **Precondicion:** Vector dinámico de materias con valores y el puntero del número de materias  
+    **Poscondicion:** Añade al vector una nueva materia e incrementa en 1 el número de materias  
     ***void AltaMaterias(materias\*\* mat, int\* num_materias);***
 
-- **Baja materias**
-    **Precondicion:** Vector dinámico de materias con valores, una cadena de caracteres con el id de la materia a eliminar y el puntero de número de materias
-    **Poscondicion:** Elimina del vector la materia pasada por parámetro y decrementa en 1 el número de materias
+- **Baja materias**  
+    **Precondicion:** Vector dinámico de materias con valores, una cadena de caracteres con el id de la materia a eliminar y el puntero de número de materias  
+    **Poscondicion:** Elimina del vector la materia pasada por parámetro y decrementa en 1 el número de materias  
     ***void BajaMaterias(materias\*\* mat, char\* id_mat, int\* num_materias);***
 
-- **Modificar materia**
-    **Precondicion:** Vector dinámico de materias con valores, una cadena de caracteres con el id de la materia a modificar y el número de materias
-    **Poscondicion:** Modifica del vector la materia pasada por parámetro
+- **Modificar materia**  
+    **Precondicion:** Vector dinámico de materias con valores, una cadena de caracteres con el id de la materia a modificar y el número de materias  
+    **Poscondicion:** Modifica del vector la materia pasada por parámetro  
     ***void ModificarMateria(materias\*\* mat, char\* id_mat, int\* num_materias);***
 
 Funciones del modulo Matricula:
-- **Cargar matriculas**
-    **Precondicion:** Puntero a vector dinámico vacío y puntero entero de número de matriculas
-    **Poscondicion:** Vuelca en el vector dinámico el contenido del fichero "matriculas.txt" y guarda el número de matrículas en la variable pasada por parámetro
+- **Cargar matriculas**  
+    **Precondicion:** Puntero a vector dinámico vacío y puntero entero de número de matriculas  
+    **Poscondicion:** Vuelca en el vector dinámico el contenido del fichero "matriculas.txt" y guarda el número de matrículas en la variable pasada por parámetro  
     ***void CargarMatriculas(matriculas\*\* matric, int\* num_matric);***
 
-- **Descargar matriculas**
-    **Precondicion:** Vector dinámico de matrículas con valores y el número de matrículas
-    **Poscondicion:** Guarda en el fichero "matriculas.txt" el vector dinámico de matrículas
+- **Descargar matriculas**  
+    **Precondicion:** Vector dinámico de matrículas con valores y el número de matrículas  
+    **Poscondicion:** Guarda en el fichero "matriculas.txt" el vector dinámico de matrículas  
     ***void GuardarMatriculas(matriculas\* matric, int\* num_matric);***
 
-- **Listar materias de una matricula concreta**
-    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id del alumno, número de matriculas y Vector dinámico de materias
-    **Poscondicion:** Imprime por pantalla la lista de materias en las que está matriculado un alumno en concreto
+- **Listar materias de una matricula concreta**  
+    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id del alumno, número de matriculas y Vector dinámico de materias  
+    **Poscondicion:** Imprime por pantalla la lista de materias en las que está matriculado un alumno en concreto  
     ***void ListarMateriasMatricula(matriculas\* matric, char\* id_alum, int\* num_matricula, materias\* materia);***
 
-- **Listar alumnos de una matricula concreta**
-    **Precondicion:** Puntero a vector dinámico de caracteres vacío, cadena de caracteres con el id de la materia, vector dinámico de matrículas, número de matriculas y puntero entero del número de ids
-    **Poscondicion:** Guarda en el vector dinámico ids los ids de los alumnos que están matriculados en una determinada materia y guarda el número de ids
+- **Listar alumnos de una matricula concreta**  
+    **Precondicion:** Puntero a vector dinámico de caracteres vacío, cadena de caracteres con el id de la materia, vector dinámico de matrículas, número de matriculas y puntero entero del número de ids  
+    **Poscondicion:** Guarda en el vector dinámico ids los ids de los alumnos que están matriculados en una determinada materia y guarda el número de ids  
     ***void ListaAlumnosMatricula(char\*\* ids, char\* id_materia, matriculas\* matric, int\* num_matric, int\* num_ids);***
 
-- **Modificar matricula**
-    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id de alumno, cadena de caracteres con un id de materia, cadena de caracteres con otro id de materia y número de matrículas
+- **Modificar matricula**  
+    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id de alumno, cadena de caracteres con un id de materia, cadena de caracteres con otro id de materia y número de matrículas  
     **Poscondicion:** Modifica una materia de la lista de matrículas de un alumno en concreto   
     ***void ModificarMatricula(matriculas\*\* matric, char\* id_alum, char\* id_antiguaMat, char\* id_nuevaMat, int\* num_matric);***
 
-- **Eliminar matricula**
-    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id del alumno, cadena de caracteres de id de materia y puntero a número de matrículas
-    **Poscondicion:** Elimina del vector dinámico una matrícula de un alumno en concreto y decrementa en 1 el valor del número de matrículas
+- **Eliminar matricula**  
+    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id del alumno, cadena de caracteres de id de materia y puntero a número de matrículas  
+    **Poscondicion:** Elimina del vector dinámico una matrícula de un alumno en concreto y decrementa en 1 el valor del número de matrículas  
     ***void EliminarMatricula(matriculas\*\* matric, char\* id_alum, char\* id_mat, int\* num_matric);***
 
-- **Crear matricula**
-    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id del alumno, cadena de caracteres con el id de la materia y puntero a número de matrículas
-    **Poscondicion:** Añade al vector dinámico una nueva matrícula e incrementa en 1 el número de matrículas
+- **Crear matricula**  
+    **Precondicion:** Vector dinámico de matrículas, cadena de caracteres de id del alumno, cadena de caracteres con el id de la materia y puntero a número de matrículas  
+    **Poscondicion:** Añade al vector dinámico una nueva matrícula e incrementa en 1 el número de matrículas  
     ***void CrearMatricula(matriculas\*\* matric, char\* id_alum, char\* id_mat, int\* num_matric);***
 
 Plan de prueba
@@ -327,7 +327,7 @@ Esta funcion se encarga de mostrar por pantalla todos los datos de un alumno en 
     Para esta prueba vamos a recorrer todos los posibles casos de la funcion.
     Primero realizaremos el diagrama de flujo del algoritmo:
     
-    ![Error, archivo no encontrado](./recursosDoc/diagramaalumnos.png)
+    <img src="./recursosDoc/diagramaalumnos.png" alt="drawing" width="500"/>
     
     Los metodos para obtener las rutas:
     

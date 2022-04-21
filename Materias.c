@@ -1,6 +1,6 @@
 #include "Materias.h"
 
-void entrada(char* ci){
+void entradas(char* ci){
     if ((strlen(ci) > 0) && (ci[strlen(ci) - 1] != '\0'))
     {
         ci[strlen(ci) - 1] = '\0';
@@ -70,12 +70,12 @@ void AltaMaterias(materias** mat, int* num_materias){
     printf("Introduce el Nombre de la nueva materia: ");
     fflush(stdin);
     fgets(ci, MAX_NOMBRE_MATERIA, stdin);
-    entrada(ci);
+    entradas(ci);
     strcpy((*mat)[(*num_materias) - 1].Nombre_materia, ci);
     printf("Introduce la Abreviatura de la nueva matreia: ");
     fflush(stdin);
     fgets(ci, MAX_ABREV_MATERIA, stdin);
-    entrada(ci);
+    entradas(ci);
     strcpy((*mat)[(*num_materias) - 1].Abrev_materia, ci);
 }
 
@@ -98,11 +98,11 @@ void ModificarMateria(materias** mat, char* id_mat, int* num_materias){
     printf("Introduce el nuevo Nombre de la materia: ");
     fflush(stdin);
     fgets(ci, MAX_NOMBRE_MATERIA, stdin);
-    entrada(ci);
+    entradas(ci);
     strcpy((*mat)[atoi(id_mat)].Nombre_materia, ci);
     printf("Introduce la nueva Abreviatura de la materia: ");
     fflush(stdin);
     fgets(ci, MAX_ABREV_MATERIA, stdin);
-    entrada(ci);
+    entradas(ci);
     strcpy((*mat)[atoi(id_mat)].Abrev_materia, ci);
 }

@@ -1,6 +1,6 @@
 #include "Alumnos.h"
 
-void entrada(char* ci){
+void Entrada(char* ci){
     if ((strlen(ci) > 0) && (ci[strlen(ci) - 1] != '\0'))
     {
         ci[strlen(ci) - 1] = '\0';
@@ -105,22 +105,22 @@ void ModificarAlumno(alumnos** alum, char* id_alum, int* num_alumnos){
             printf("Introduce el nuevo nombre del alumno: ");
             fflush(stdin);
             fgets(ci, MAX_NOMBRE_ALUM, stdin);
-            entrada(ci);
+            Entrada(ci);
             strcpy((*alum)[n].Nombre_alum, ci);
             printf("Introduce la nueva direccion del alumno: ");
             fflush(stdin);
             fgets(ci, MAX_DIREC_ALUM, stdin);
-            entrada(ci);
+            Entrada(ci);
             strcpy((*alum)[n].Direc_alum, ci);
             printf("Introduce la nueva localidad del alumno: ");
             fflush(stdin);
             fgets(ci, MAX_LOCAL_ALUM, stdin);
-            entrada(ci);
+            Entrada(ci);
             strcpy((*alum)[n].Local_alum, ci);
             printf("Introduce el nuevo curso del alumno: ");
             fflush(stdin);
             fgets(ci, MAX_CURSO_ALUM, stdin);
-            entrada(ci);
+            Entrada(ci);
             strcpy((*alum)[n].Curso, ci);
             printf("Introduce el nuevo grupo del alumno: ");
             fflush(stdin);
@@ -143,32 +143,32 @@ void AltaAlumno(alumnos** alum, int* num_alumnos){
     printf("Introduce el ID del alumno: ");
     fflush(stdin);
     fgets(ci, MAX_ID_ALUM, stdin);
-    entrada(ci);
+    Entrada(ci);
     strcpy((*alum)[(*num_alumnos) - 1].Id_alum, ci);
     printf("Introduce el nombre del alumno: ");
     fflush(stdin);
     fgets(ci, MAX_NOMBRE_ALUM, stdin);
-    entrada(ci);
+    Entrada(ci);
     strcpy((*alum)[(*num_alumnos) - 1].Nombre_alum, ci);
     printf("Introduce la direccion del alumno: ");
     fflush(stdin);
     fgets(ci, MAX_DIREC_ALUM, stdin);
-    entrada(ci);
+    Entrada(ci);
     strcpy((*alum)[(*num_alumnos) - 1].Direc_alum, ci);
     printf("Introduce la localidad del alumno: ");
     fflush(stdin);
     fgets(ci, MAX_LOCAL_ALUM, stdin);
-    entrada(ci);
+    Entrada(ci);
     strcpy((*alum)[(*num_alumnos) - 1].Local_alum, ci);
     printf("Introduce el curso del alumno: ");
     fflush(stdin);
     fgets(ci, MAX_CURSO_ALUM, stdin);
-    entrada(ci);
+    Entrada(ci);
     strcpy((*alum)[(*num_alumnos) - 1].Curso, ci);
     printf("Introduce el grupo del alumno: ");
     fflush(stdin);
     fgets(ci, MAX_GRUPO_ALUM, stdin);
-    entrada(ci);
+    Entrada(ci);
     strcpy((*alum)[(*num_alumnos) - 1].Grupo, ci);
 }
 

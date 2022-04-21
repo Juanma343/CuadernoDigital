@@ -8,5 +8,3 @@ main.c
 *.gch
 bin
 cuaderno
-obj
-*.vscode
